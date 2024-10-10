@@ -1,0 +1,1318 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: UMKM API
+  description: API for UMKM
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: API Support
+    url: http://www.swagger.io/support
+    email: support@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        email_verified_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+        - id
+        - name
+        - email
+        - email_verified_at
+        - created_at
+        - updated_at
+    CategoryBody:
+      type: object
+      properties:
+        images:
+          type: string
+          format: binary
+        name:
+          type: string
+      required:
+        - images
+        - name
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        images:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+        - id
+        - name
+        - slug
+        - images
+        - created_at
+        - updated_at
+    ProfilBody:
+      type: object
+      properties:
+        title:
+          type: string
+        category_id:
+          type: integer
+        waktu_kerja:
+          type: string
+        description:
+          type: string
+        address:
+          type: string
+        status:
+          type: string
+        phone:
+          type: string
+        website:
+          type: string
+        instagram:
+          type: string
+        facebook:
+          type: string
+        perizinan_usaha:
+          type: string
+          format: binary
+        sertifikat_usaha:
+          type: string
+          format: binary
+        longitude:
+          type: string
+        latitude:
+          type: string
+        gofood:
+          type: string
+        grabfood:
+          type: string
+        shopeefood:
+          type: string
+        images:
+          type: string
+          format: binary
+      required:
+        - title
+        - category_id
+        - waktu_kerja
+        - description
+        - address
+        - status
+        - phone
+        - website
+        - instagram
+        - facebook
+        - perizinan_usaha
+        - sertifikat_usaha
+        - longitude
+        - latitude
+        - gofood
+        - grabfood
+        - shopeefood
+        - images
+    ProfilImage:
+      type: object
+      properties:
+        id:
+          type: integer
+        profil_id:
+          type: integer
+        images:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+        - id
+        - profil_id
+        - images
+        - created_at
+        - updated_at
+    Profil:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        slug:
+          type: string
+        user_id:
+          type: integer
+        category_id:
+          type: integer
+        waktu_kerja:
+          type: string
+        description:
+          type: string
+        address:
+          type: string
+        status:
+          type: string
+        phone:
+          type: string
+        website:
+          type: string
+        instagram:
+          type: string
+        facebook:
+          type: string
+        perizinan_usaha:
+          type: string
+        sertifikat_usaha:
+          type: string
+        longitude:
+          type: string
+        latitude:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        gofood:
+          type: string
+        grabfood:
+          type: string
+        shopeefood:
+          type: string
+        category:
+          $ref: '#/components/schemas/Category'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfilImage'
+      required:
+        - title
+        - slug
+        - user_id
+        - category_id
+        - waktu_kerja
+        - description
+        - address
+        - status
+        - phone
+        - website
+        - instagram
+        - facebook
+        - perizinan_usaha
+        - sertifikat_usaha
+        - longitude
+        - latitude
+        - gofood
+        - grabfood
+        - shopeefood
+        - category
+        - images
+    Slider:
+      type: object
+      properties:
+        id:
+          type: integer
+        user_id:
+          type: integer
+        images:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      required:
+        - id
+        - use_id
+        - images
+        - created_at
+        - updated_at
+    UserBody:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        password_confirmation:
+          type: string
+      required:
+        - name
+        - email
+        - password
+        - password_confirmation
+    SuccessMessage:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      required:
+        - success
+        - message
+    DataIndex:
+      type: object
+      properties:
+        current_page:
+          type: integer
+        first_page_url:
+          type: string
+        from:
+          type: integer
+        last_page:
+          type: string
+        last_page_url:
+          type: string
+        links:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                nullable: true
+              label:
+                type: string
+              active:
+                type: boolean
+            required:
+              - url
+              - label
+              - active
+        next_page_url:
+          type: string
+          nullable: true
+        path:
+          type: string
+        per_page:
+          type: integer
+        prev_page_url:
+          type: string
+          nullable: true
+        to:
+          type: integer
+        total:
+          type: integer
+      required:
+        - current_page
+        - first_page_url
+        - from
+        - last_page
+        - last_page_url
+        - links
+        - next_page_url
+        - path
+        - per_page
+        - pev_page_url
+        - to
+        - total
+  responses:
+    '400':
+      description: General response for bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SuccessMessage'
+    '401':
+      description: General response for unauthenticated request.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    '404':
+      description: General response for not found resource.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              exception:
+                type: string
+              file:
+                type: string
+              line:
+                type: integer
+              trace:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    file:
+                      type: string
+                    line:
+                      type: integer
+                    function:
+                      type: string
+                    class:
+                      type: string
+                    type:
+                      type: string
+                  required:
+                    - file
+                    - line
+                    - function
+                    - class
+                    - type
+            required:
+              - message
+              - exception
+              - file
+              - line
+              - trace
+paths:
+  /api/admin/login:
+    post:
+      summary: Login
+      description: Login using email and password.
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        '200':
+          description: Success login.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      user:
+                        $ref: '#/components/schemas/User'
+                      token:
+                        type: string
+                    required:
+                      - user
+                      - token
+        '422':
+          description: Error in input.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: object
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+                  - type: object
+                    properties:
+                      password:
+                        type: array
+                        items:
+                          type: string
+  /api/admin/user:
+    get:
+      summary: Get user profile
+      description: Get curent user profile
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: Success get user profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/401'
+  /api/admin/logout:
+    post:
+      summary: Logout
+      description: Logout current user.
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: Success logout.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessMessage'
+        '401':
+          $ref: '#/components/responses/401'
+  /api/admin/categories:
+    get:
+      summary: Menampilkan All Kategori
+      description: digunakan untuk menampilkan list kategori secara keseluruhan dalam menu category dashboard admin
+      tags:
+        - Categories
+      responses:
+        '200':
+          description: Berhasil memanggil all kategori
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: '#/components/schemas/DataIndex'
+                          - type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  $ref: '#/components/schemas/Category'
+                            required:
+                              - data
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+    post:
+      summary: Menambah Kategori baru
+      description: Menambahkan data kategori baru kedalam website
+      tags:
+        - Categories
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CategoryBody'
+      responses:
+        '201':
+          description: Data kategori berhasil ditambahkan
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Category'
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+        '422':
+          description: Data harus di isi
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: object
+                    properties:
+                      images:
+                        type: array
+                        items:
+                          type: string
+                  - type: object
+                    properties:
+                      name:
+                        type: array
+                        items:
+                          type: string
+  /api/admin/categories/{id}:
+    get:
+      summary: memanggil satu kategori
+      description: Memanggil satu kategori
+      tags:
+        - Categories
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: masukkan data sesuai kategori
+      responses:
+        '200':
+          description: Data berhasil terpanggil
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Category'
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+    delete:
+      summary: hapus data kategori
+      description: Hapus data kategori
+      tags:
+        - Categories
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: pilih data yang ingin dihapus
+      responses:
+        '200':
+          description: Data berhasil dihapus
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        type: string
+                        nullable: true
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+    post:
+      summary: Edit data kategori
+      description: Edit salah satu data kategori
+      tags:
+        - Categories
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: pilih data kategori yang ingin di edit
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CategoryBody'
+                - type: object
+                  properties:
+                    _method:
+                      type: string
+                  required:
+                    - _method
+      responses:
+        '200':
+          description: Data berhasil di update
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Category'
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+  /api/admin/profils:
+    get:
+      summary: Memanggil semua kategori
+      description: Memanggil semua kategori yang ada dalam database untuk menampilkan semua kategori di web
+      tags:
+        - Profils
+      responses:
+        '200':
+          description: kategori berhasil dipanggil
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: '#/components/schemas/DataIndex'
+                          - type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  $ref: '#/components/schemas/Profil'
+                            required:
+                              - data
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+    post:
+      summary: Menambahkan data UMKM
+      description: Menambahkan data UMKM ke website dan database yang nantinya akan tampil di list menu UMKM admin dashboard dan menu UMKM halaman utama website.
+      tags:
+        - Profils
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProfilBody'
+      responses:
+        '201':
+          description: Data berhasil ditambahkan
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Profil'
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+        '422':
+          description: Data harus di isi, tidak boleh kosong
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: object
+                    properties:
+                      title:
+                        type: array
+                        items:
+                          type: string
+  /api/admin/profils/{id}:
+    post:
+      summary: Edit satu data UMKM
+      description: Mengedit satu data UMKM yang ada di dalam website
+      tags:
+        - Profils
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: pilih data UMKM yang ingin diubah
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ProfilBody'
+                - type: object
+                  properties:
+                    _method:
+                      type: string
+                  required:
+                    - _method
+      responses:
+        '200':
+          description: data berhasil di update
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Profil'
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+    get:
+      summary: Memanggil satu data UMKM
+      description: Memanggil satu data UMKM untuk di tampilkan ketika melakukan pencarian
+      tags:
+        - Profils
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: pilih satu data UMKM
+      responses:
+        '200':
+          description: data berhasil dipanggil
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Profil'
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+    delete:
+      summary: Hapus satu data UMKM
+      description: Menghapus satu data UMKM.
+      tags:
+        - Profils
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: memilih data sesuai id
+      responses:
+        '200':
+          description: Data Category Berhasil Dihapus!
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        type: string
+                        nullable: true
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+  /api/admin/sliders:
+    get:
+      summary: Menampilkan list data Sliders
+      description: Menampilkan list data data sliders yang dikelola admin 
+      tags:
+        - Sliders
+      responses:
+        '200':
+          description: List Data Sliders
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: '#/components/schemas/DataIndex'
+                          - type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  $ref: '#/components/schemas/Slider'
+                            required:
+                              - data
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+    post:
+      summary: Menambahkan data sliders
+      description: Menambahkan data sliders oleh admin
+      tags:
+        - Sliders
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                images:
+                  type: string
+                  format: binary
+              required:
+                - images
+      responses:
+        '201':
+          description: Data Slider Berhasil Disimpan!
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Slider'
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+        '422':
+          description: The images must be an image and type jpg, jpeg, and png
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: object
+                    properties:
+                      images:
+                        type: array
+                        items:
+                          type: string
+  /api/admin/sliders/{id}:
+    delete:
+      summary: Hapus data sliders
+      description: Menghapus salah satu data sliders
+      tags:
+        - Sliders
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: hapus berdasarkan satu data yang dipilih
+      responses:
+        '200':
+          description: Data Slider Berhasil Dihapus!
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        type: string
+                        nullable: true
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+  /api/admin/users:
+    get:
+      summary: Menampilkan semua data users
+      description: Menampilkan semua data users untuk ditampilkan di menu users dashboad admin
+      tags:
+        - Users
+      responses:
+        '200':
+          description: List Data Users
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: '#/components/schemas/DataIndex'
+                          - type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  $ref: '#/components/schemas/User'
+                            required:
+                              - data
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+    post:
+      summary: menambahkan data users
+      description: Menambahkan data users sebagai administrator website
+      tags:
+        - Users
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserBody'
+      responses:
+        '201':
+          description: Data User Berhasil Disimpan!
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/User'
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+        '422':
+          description: Data tidak boleh kosong!
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: object
+                    properties:
+                      name:
+                        type: array
+                        items:
+                          type: string
+                  - type: object
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+                  - type: object
+                    properties:
+                      password:
+                        type: array
+                        items:
+                          type: string
+                  - type: object
+                    properties:
+                      password_confirmation:
+                        type: array
+                        items:
+                          type: string
+  /api/admin/users/{id}:
+    get:
+      summary: Memanggil data users per id
+      description: Memanggil salah satu data Users
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: dipanggil berdasarkan id
+      responses:
+        '200':
+          description: Detail Data User!
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/User'
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+    post:
+      summary: Edit data users
+      description: Edit salah satu data users
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: edit berdasarkan data yang di pilih (id)
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                _method:
+                  type: string
+              required:
+                - name
+                - email
+                - _method
+      responses:
+        '200':
+          description: Data User Berhasil Diupdate!
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Profil'
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+        '422':
+          description: Data tidak boleh kosong!
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - type: object
+                    properties:
+                      name:
+                        type: array
+                        items:
+                          type: string
+                  - type: object
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+    delete:
+      summary: Hapus data users
+      description: Hapus salah satu data users
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: hapus data per id
+      responses:
+        '200':
+          description: Data User Berhasil Dihapus!
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        type: string
+                        nullable: true
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
+  /api/web/categories:
+    get:
+      summary: mengambil data kategori
+      description: Mengambil data kategori untuk menampilkan kategori di website
+      tags:
+        - Categories
+      responses:
+        '200':
+          description: kategori berhasil dipanggil
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Category'
+                    required:
+                      - data
+  /api/web/categories/{slug}:
+    get:
+      summary: Memanggil kategori untuk data spesifik
+      description: Memanggil data kategori untuk menampilkan umkm per kategorinya
+      tags:
+        - Categories
+      parameters:
+        - in: path
+          name: slug
+          schema:
+            type: string
+          required: true
+          description: nama kategori yang akan ditampilkan
+      responses:
+        '200':
+          description: data berhasil dipanggil
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: '#/components/schemas/Category'
+                          - type: object
+                            properties:
+                              profils:
+                                type: array
+                                items:
+                                  $ref: '#/components/schemas/Profil'
+                            required:
+                              - profils
+                    required:
+                      - data
+  /api/web/profils:
+    get:
+      summary: Memanggil satu data UMKM
+      description: Menampilkan satu data UMKM yang diambil dari database untuk fitur pencarian
+      tags:
+        - Profils
+      responses:
+        '200':
+          description: List Data Profils
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: '#/components/schemas/DataIndex'
+                          - type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  $ref: '#/components/schemas/Profil'
+                            required:
+                              - data
+                    required:
+                      - data
+  /api/web/profils/{slug}:
+    get:
+      summary: Memanggil data UMKM per nama UMKM
+      description: Memanggil nama UMKM untuk menampilkan informasi lengkap dari data UMKM yang dipanggil
+      tags:
+        - Profils
+      parameters:
+        - in: path
+          name: slug
+          schema:
+            type: string
+          required: true
+          description: diambil dari nama salah satu data UMKM
+      responses:
+        '200':
+          description: Detail Data UMKM (Nama UMKM)
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        anyOf:
+                          - $ref: '#/components/schemas/Profil'
+                          - type: string
+                            nullable: true
+                    required:
+                      - data
+  /api/web/profils/all:
+    get:
+      summary: Memanggil semua data UMKM
+      description: Memanggil semua data UMKM untuk ditampilkan di menu UMKM
+      tags:
+        - Profils
+      responses:
+        '200':
+          description: List Data Profil
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Profil'
+                    required:
+                      - data
+  /api/web/sliders:
+    get:
+      summary: Memanggil data Sliders
+      description: Memanggil data sliders yang ada didalam database untuk ditampilkan kedalam website halaman utama
+      tags:
+        - Sliders
+      responses:
+        '200':
+          description: List Data Sliders
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Slider'
+                    required:
+                      - data
+  /api/admin/dashboard:
+    get:
+      summary: Menampilkan Semua data data yang dikelola
+      description: Menampilkan Semua data data yang ada di website seperti data kategori, umkm, sliders dan users.
+      tags:
+        - Dashboard
+      responses:
+        '200':
+          description: Statistik Data
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessMessage'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          categories:
+                            type: integer
+                          profils:
+                            type: integer
+                          sliders:
+                            type: integer
+                          users:
+                            type: integer
+                        required:
+                          - categories
+                          - profils
+                          - sliders
+                          - users
+                    required:
+                      - data
+        '401':
+          $ref: '#/components/responses/401'
